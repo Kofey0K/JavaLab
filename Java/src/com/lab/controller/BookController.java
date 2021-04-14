@@ -1,5 +1,7 @@
 package com.lab.controller;
 
+import com.lab.controller.exceptions.FutureYearException;
+import com.lab.controller.exceptions.NegativeNumberException;
 import com.lab.model.BookConverter;
 import com.lab.model.BookModel;
 import com.lab.utility.InputUtility;
@@ -17,7 +19,24 @@ public class BookController {
     }
 
     public void addBook() {
-        model.addBook(InputUtility.inputTitleValueWithScanner(), InputUtility.inputAuthorValueWithScanner(), InputUtility.inputPublishingHouseValueWithScanner(), InputUtility.inputYearValueWithScanner(), InputUtility.inputDoubleValueWithScanner());
+        int year = InputUtility.inputYearValueWithScanner();
+        try {
+            Validator.validateYearValue(year);
+        } catch (NegativeNumberException e) {
+            view.printlnMessage(view.WRONG_NEGATIVE_DATA);
+            return;
+        } catch (FutureYearException e) {
+            view.printlnMessage(view.TOO_BIG_YEAR_DATA);
+            return;
+        }
+        double price = InputUtility.inputDoubleValueWithScanner();
+        try {
+            Validator.validateDoubleValue(price);
+        } catch (NegativeNumberException e) {
+            view.printlnMessage(view.WRONG_NEGATIVE_DATA);
+            return;
+        }
+        model.addBook(InputUtility.inputTitleValueWithScanner(), InputUtility.inputAuthorValueWithScanner(), InputUtility.inputPublishingHouseValueWithScanner(), year, price);
     }
 
     public void findBooksFromSetAuthor() {

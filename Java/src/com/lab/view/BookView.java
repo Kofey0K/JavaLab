@@ -18,7 +18,8 @@ public class BookView {
                     "4 - Search for books from a publishing house\n" +
                     "5 - Search for books published later than set year\n" +
                     "6 - Exit\n";
-
+    public static final String WRONG_NEGATIVE_DATA = "Wrong input! This number cannot be less than zero.";
+    public static final String TOO_BIG_YEAR_DATA = "Wrong input! This year has not come yet.";
     //...//
 
     public void printMessage(String message) {

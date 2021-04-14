@@ -2,6 +2,7 @@ package com.lab.utility;
 
 import com.lab.view.BookView;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputUtility {
@@ -12,38 +13,44 @@ public class InputUtility {
     public static void setView(BookView view) {
         InputUtility.view = view;
     }
+
     public static int inputSwitchValueWithScanner() {
 
         view.printMessage(view.INPUT_INT_SWITCH_DATA);
-        while (!sc.hasNextInt()) {
-            view.printMessage(view.WRONG_INPUT_INT_DATA + view.INPUT_INT_SWITCH_DATA);
-
-            sc.next();
+        while (true) {
+            try {
+                return sc.nextInt();
+            } catch (InputMismatchException e) {
+                sc.next();
+                view.printlnMessage(view.WRONG_INPUT_INT_DATA + "\n" + view.MENU_POSSIBILITIES + view.INPUT_INT_SWITCH_DATA);
+            }
         }
-        return sc.nextInt();
     }
 
 
     public static int inputYearValueWithScanner() {
-
         view.printMessage(view.INPUT_INT_YEAR_DATA);
-        while (!sc.hasNextInt()) {
-            view.printMessage(view.WRONG_INPUT_INT_DATA + view.INPUT_INT_YEAR_DATA);
-
-            sc.next();
+        while (true) {
+            try {
+                return sc.nextInt();
+            } catch (InputMismatchException e) {
+                sc.next();
+                view.printlnMessage(view.WRONG_INPUT_INT_DATA + view.INPUT_INT_YEAR_DATA);
+            }
         }
-        return sc.nextInt();
     }
 
     public static double inputDoubleValueWithScanner() {
 
         view.printMessage(view.INPUT_DOUBLE_PRICE_DATA);
-        while (!sc.hasNextDouble()) {
-            view.printMessage(view.WRONG_INPUT_DOUBLE_PRICE_DATA + view.INPUT_DOUBLE_PRICE_DATA);
-
-            sc.next();
+        while (true) {
+            try {
+                return sc.nextInt();
+            } catch (InputMismatchException e) {
+                sc.next();
+                view.printlnMessage(view.WRONG_INPUT_DOUBLE_PRICE_DATA + view.INPUT_DOUBLE_PRICE_DATA);
+            }
         }
-        return sc.nextDouble();
     }
 
     public static String inputAuthorValueWithScanner() {
@@ -66,7 +73,6 @@ public class InputUtility {
         while (author.equals("")) author = sc.nextLine();
         return author;
     }
-
 
 
 }
