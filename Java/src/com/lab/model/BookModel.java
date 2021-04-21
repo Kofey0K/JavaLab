@@ -1,12 +1,13 @@
 package com.lab.model;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class BookModel {
 
     private BookStorage storage;
 
-    public BookModel() {
+    public BookModel() throws IOException, ClassNotFoundException  {
         storage = new BookStorage();
     }
 
@@ -58,5 +59,11 @@ public class BookModel {
             }
         }
         return Arrays.copyOf(result, len);
+    }
+    public void save() throws IOException, NullPointerException {
+        SaveLoad.save(getStorage());
+    }
+    public void saveSearchResult(String[] result) throws IOException {
+        SaveLoad.saveSearchResult(result);
     }
 }

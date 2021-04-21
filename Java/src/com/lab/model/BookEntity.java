@@ -1,6 +1,8 @@
 package com.lab.model;
 
-public class BookEntity {
+import java.io.Serializable;
+
+public class BookEntity implements Serializable {
     private static int amount = 0;
     private int id;
     private String title;

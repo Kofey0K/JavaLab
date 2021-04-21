@@ -1,4 +1,5 @@
 package com.lab.controller;
+
 import com.lab.controller.exceptions.FutureYearException;
 import com.lab.controller.exceptions.NegativeNumberException;
 
@@ -19,6 +20,5 @@ public class Validator {
         if (price < 0) {
             throw new NegativeNumberException();
         }
-
     }
 }

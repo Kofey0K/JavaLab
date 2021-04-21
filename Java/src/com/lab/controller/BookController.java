@@ -7,15 +7,23 @@ import com.lab.model.BookModel;
 import com.lab.utility.InputUtility;
 import com.lab.view.BookView;
 
+import java.io.IOException;
+
 public class BookController {
 
     private BookModel model;
     private BookView view;
 
     public BookController() {
-        model = new BookModel();
         view = new BookView();
+        try {
+            model = new BookModel();
+        } catch (IOException | ClassNotFoundException e){
+            view.printlnMessage(view.LOAD_FAILED);
+            System.exit(-1);
+        }
         InputUtility.setView(view);
+
     }
 
     public void addBook() {
@@ -40,15 +48,42 @@ public class BookController {
     }
 
     public void findBooksFromSetAuthor() {
-        view.printArray(BookConverter.getArrayInString(model.findBooksFromSetAuthor(InputUtility.inputAuthorValueWithScanner())));
+        String[] array = BookConverter.getArrayInString(model.findBooksFromSetAuthor(InputUtility.inputAuthorValueWithScanner()));
+        view.printArray(array);
+        askForSave(array);
     }
 
     public void findBooksFromSetPublishingHouse() {
-        view.printArray(BookConverter.getArrayInString(model.findBooksFromSetPublishingHouse(InputUtility.inputPublishingHouseValueWithScanner())));
+        String[] array = BookConverter.getArrayInString(model.findBooksFromSetPublishingHouse(InputUtility.inputPublishingHouseValueWithScanner()));
+        view.printArray(array);
+        askForSave(array);
     }
 
     public void findBooksPublishedLaterThanSetYear() {
-        view.printArray(BookConverter.getArrayInString(model.findBooksPublishedLaterThanSetYear(InputUtility.inputYearValueWithScanner())));
+        String[] array = BookConverter.getArrayInString(model.findBooksPublishedLaterThanSetYear(InputUtility.inputYearValueWithScanner()));
+        view.printArray(array);
+        askForSave(array);
+    }
+    public void save(){
+        try{
+        model.save();
+        } catch (IOException | NullPointerException e){
+            view.printlnMessage(view.SAVE_FAILED);
+        }
+
+    }
+
+    public void askForSave(String[] result){
+        view.printlnMessage(view.ASK_FOR_SAVE);
+        String yesNo = InputUtility.inputYesNoConfirmation();
+        if( yesNo.equals("y")){
+            try {
+                model.saveSearchResult(result);
+                view.printlnMessage(view.SUCCESSFUL_SAVE);
+            } catch (IOException e){
+                view.printlnMessage(view.SAVE_FAILED);
+            }
+        }
     }
 
     public void runMenu() {
@@ -76,6 +111,7 @@ public class BookController {
                     findBooksPublishedLaterThanSetYear();
                     break;
                 case 6:
+                    save();
                     System.exit(1000);
                     break;
                 default:

@@ -1,5 +1,6 @@
 package com.lab.model;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 public class BookStorage {
@@ -10,9 +11,9 @@ public class BookStorage {
         return length;
     }
 
-    public BookStorage() {
+    public BookStorage() throws IOException, ClassNotFoundException{
         length = 0;
-        addArrayOfBooks(DataSOS.createArrayOfPredefinedBooks());
+        addArrayOfBooks(SaveLoad.load());
     }
 
     public BookEntity[] getStorage() {

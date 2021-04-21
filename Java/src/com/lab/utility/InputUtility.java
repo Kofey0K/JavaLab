@@ -73,7 +73,11 @@ public class InputUtility {
         while (author.equals("")) author = sc.nextLine();
         return author;
     }
-
+    public static String inputYesNoConfirmation() {
+        String author = sc.nextLine();
+        while (author.equals("")) author = sc.nextLine();
+        return author;
+    }
 
 }
 
