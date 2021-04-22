@@ -5,21 +5,23 @@ import java.io.*;
 
 public class SaveLoad {
     public static BookEntity[] load() throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("book.dat"));
-        return (BookEntity[]) ois.readObject();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("book.dat"))) {
+            return (BookEntity[]) ois.readObject();
+        }
     }
 
     public static void save(BookEntity[] storage) throws IOException, NullPointerException {
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("book.dat"));
-        oos.writeObject(storage);
-        oos.close();
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("book.dat"))) {
+            oos.writeObject(storage);
+        }
     }
 
     public static void saveSearchResult(String[] result) throws IOException {
-        FileWriter writer = new FileWriter(new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath(), "saved_books.txt"), false);
-        for (String line : result) {
-            writer.append(line);
+        try (FileWriter writer = new FileWriter(new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath(), "saved_books.txt"), false)) {
+            for (String line : result) {
+                writer.append(line);
+            }
+            writer.flush();
         }
-        writer.flush();
     }
 }

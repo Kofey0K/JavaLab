@@ -23,7 +23,7 @@ public class BookView {
     public static final String SAVE_FAILED = "Something went wrong! The data wasn't saved.";
     public static final String LOAD_FAILED = "Something went wrong! The data wasn't loaded.";
     public static final String ASK_FOR_SAVE = "Would you like to save this search result?\n y- yes, n - no";
-    public static final String SUCCESSFUL_SAVE = "Successfully saved! You can find your file at your documents folder.";
+    public static final String SUCCESSFUL_SAVE = "Successfully saved! You can find your saved_books.txt file at your documents folder.";
     //...//
 
     public void printMessage(String message) {
