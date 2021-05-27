@@ -1,0 +1,11 @@
+2021-05-27 14:06:38.707 [main] DEBUG com.lab.controller.BookController - Program started.
+2021-05-27 14:07:31.388 [main] WARN  com.lab.controller.BookController - Wrong input! This number cannot be less than zero.
+2021-05-27 14:07:42.722 [main] INFO  com.lab.controller.BookController - Save successful
+2021-05-27 14:07:42.722 [main] DEBUG com.lab.controller.BookController - Execution of program has ended.
+2021-05-27 14:29:16.852 [main] DEBUG com.lab.controller.BookController - Program started.
+2021-05-27 14:29:21.457 [main] WARN  com.lab.controller.BookController - Wrong input! This number cannot be less than zero.
+2021-05-27 14:29:27.124 [main] INFO  com.lab.controller.BookController - Save successful
+2021-05-27 14:29:27.124 [main] DEBUG com.lab.controller.BookController - Execution of program has ended.
+2021-05-27 14:40:01,831 [main] DEBUG com.lab.controller.BookController - Program started.
+2021-05-27 14:40:06,052 [main] INFO  com.lab.controller.BookController - Save successful
+2021-05-27 14:40:06,053 [main] DEBUG com.lab.controller.BookController - Execution of program has ended.
